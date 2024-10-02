@@ -31,11 +31,9 @@ The Bullseye iOS Game is a fun and simple game where players try to hit a target
 - Real-time updates with Combine
 
 ## Setup
-
-### Android Apps:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/mobile-app-projects.git
+   git clone https://github.com/quannypete/bullseye-ios.git
 2. Open the iOS project in **Xcode**.
 3. Resolve any dependencies (CocoaPods, etc.).
 4. Build and run the app on a simulator or physical iOS device.
