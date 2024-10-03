@@ -102,7 +102,6 @@
 		43C4A9672C98A7AD002A2A6F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				434E1D262C964B0F00373ECE /* Assets.xcassets */,
 				43524E912C98A8B80034A39D /* Game.swift */,
 			);
 			path = Models;
@@ -119,6 +118,7 @@
 		43C4A9692C98A7ED002A2A6F /* App */ = {
 			isa = PBXGroup;
 			children = (
+				434E1D262C964B0F00373ECE /* Assets.xcassets */,
 				434E1D222C964B0D00373ECE /* BullseyeApp.swift */,
 			);
 			path = App;
