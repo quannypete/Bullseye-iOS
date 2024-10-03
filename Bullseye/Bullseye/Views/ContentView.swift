@@ -14,12 +14,13 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("🎯🎯🎯\n PUT THE BULLSEYE AS CLOSE AS YOU CAN TO")
+            Text("🎯🎯🎯\n Put the Bullseye as close as you can to".uppercased())
                 .bold()
                 .multilineTextAlignment(.center)
                 .lineSpacing(4.0)
                 .font(.footnote)
                 .kerning(2.0)
+                .padding(.horizontal, 30)
             Text(String(game.target))
                 .kerning(-1.0)
                 .font(.largeTitle)
@@ -32,10 +33,18 @@ struct ContentView: View {
                 Text("100")
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
             }
-            Button("Hit me") {
+            .padding()
+            Button("Hit me".uppercased()) {
                 alertIsVisable = true
-            }
-            .alert("Hello there", 
+            }.padding(20.0)
+            .background(
+                Color.blue
+            )
+            .foregroundColor(.white)
+            .cornerRadius(21.0)
+            .bold()
+            .font(.title3)
+            .alert("Hello there",
                    isPresented: $alertIsVisable,
                    actions: {
                 Button("Awesome") {
