@@ -18,45 +18,8 @@ struct ContentView: View {
                 .ignoresSafeArea()
             VStack {
                 InstructionView(game: $game)
-                HStack {
-                    
-                    Text("1")
-                        .bold()
-                        .foregroundColor(Color("TextColor"))
-                    Slider(value: $sliderValue, in: 1.0...100.0)
-                    Text("100")
-                        .bold()
-                        .foregroundColor(Color("TextColor"))
-                }
-                .padding()
-                Button("Hit me".uppercased()) {
-                    alertIsVisable = true
-                }.padding(20.0)
-                    .background(
-                        ZStack {
-                            Color("ButtonColor")
-                                LinearGradient(
-                                    gradient: Gradient(colors: [Color.white.opacity(0.3), Color.clear]), startPoint: .top, endPoint: .bottom)
-                        }
-                    )
-                    .foregroundColor(.white)
-                    .cornerRadius(21.0)
-                    .bold()
-                    .font(.title3)
-                    .alert("Hello there",
-                           isPresented: $alertIsVisable,
-                           actions: {
-                        Button("Awesome") {
-                            print("Alert closed")
-                        }
-                    }, message: {
-                        let roundedValue = Int(sliderValue.rounded())
-                        Text("""
-The slider's value is \(roundedValue).
-You scored \(game.point(slidervalue: roundedValue)) points this round.
-""")
-                    }
-                    )
+                SliderView(sliderValue: $sliderValue)
+                HitMeButton(alertIsVisable: $alertIsVisable, sliderValue: $sliderValue, game: $game)
             }
         }
     }
@@ -70,6 +33,53 @@ struct InstructionView: View {
                 .padding(.horizontal, 30)
             BigNumberText(text: String(game.target))
         }
+    }
+}
+struct SliderView: View {
+    @Binding var sliderValue: Double
+    var body: some View {
+        HStack {
+            SliderLabelTextView(text: "1")
+            Slider(value: $sliderValue, in: 1.0...100.0)
+            SliderLabelTextView(text: "100")
+        }
+        .padding()
+    }
+}
+
+struct HitMeButton: View {
+    @Binding var alertIsVisable: Bool
+    @Binding var sliderValue: Double
+    @Binding var game: Game
+    var body: some View {
+        Button("Hit me".uppercased()) {
+            alertIsVisable = true
+        }.padding(20.0)
+            .background(
+                ZStack {
+                    Color("ButtonColor")
+                        LinearGradient(
+                            gradient: Gradient(colors: [Color.white.opacity(0.3), Color.clear]), startPoint: .top, endPoint: .bottom)
+                }
+            )
+            .foregroundColor(.white)
+            .cornerRadius(21.0)
+            .bold()
+            .font(.title3)
+            .alert("Hello there",
+                   isPresented: $alertIsVisable,
+                   actions: {
+                Button("Awesome") {
+                    print("Alert closed")
+                }
+            }, message: {
+                let roundedValue = Int(sliderValue.rounded())
+                Text("""
+The slider's value is \(roundedValue).
+You scored \(game.point(slidervalue: roundedValue)) points this round.
+""")
+            }
+            )
     }
 }
 
