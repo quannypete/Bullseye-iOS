@@ -55,10 +55,6 @@ struct HitMeButton: View {
         Button("Hit me".uppercased()) {
             alertIsVisable = true
         }.padding(20.0)
-            .overlay(
-                RoundedRectangle(cornerRadius: 21.0)
-                    .strokeBorder(Color.white, lineWidth: 2.0)
-            )
             .background(
                 ZStack {
                     Color("ButtonColor")
