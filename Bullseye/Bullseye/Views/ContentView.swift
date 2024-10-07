@@ -17,19 +17,7 @@ struct ContentView: View {
             Color("BackgroundColor")
                 .ignoresSafeArea()
             VStack {
-                Text("🎯🎯🎯\n Put the Bullseye as close as you can to".uppercased())
-                    .bold()
-                    .multilineTextAlignment(.center)
-                    .lineSpacing(4.0)
-                    .font(.footnote)
-                    .kerning(2.0)
-                    .padding(.horizontal, 30)
-                    .foregroundColor(Color("TextColor"))
-                Text(String(game.target))
-                    .kerning(-1.0)
-                    .font(.largeTitle)
-                    .fontWeight(.black)
-                    .foregroundColor(Color("TextColor"))
+                InstructionView(game: $game)
                 HStack {
                     
                     Text("1")
@@ -74,11 +62,22 @@ You scored \(game.point(slidervalue: roundedValue)) points this round.
     }
 }
 
+struct InstructionView: View {
+    @Binding var game: Game
+    var body: some View {
+        VStack{
+            InstructionText(text: "🎯🎯🎯\n Put the Bullseye as close as you can to")
+                .padding(.horizontal, 30)
+            BigNumberText(text: String(game.target))
+        }
+    }
+}
+
 struct Content_Preview: PreviewProvider{
     static var previews: some View {
         ContentView()
         ContentView()
-            .preferredColorScheme(.light)
+            .preferredColorScheme(.dark)
             .previewInterfaceOrientation(.portrait)
             .previewDevice("iPhone 15 Pro Max")
     }
